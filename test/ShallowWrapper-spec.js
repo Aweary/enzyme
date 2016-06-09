@@ -449,6 +449,17 @@ describe('shallow', () => {
     it('Should query attributes with spaces in their values', () => {
       const wrapper = shallow(
         <div>
+          <h1 data-foo="foo.bar">Hello</h1>
+          <h1 data-foo="bar baz quz">World</h1>
+        </div>
+      );
+      expect(wrapper.find('[data-foo]')).to.have.length(2);
+      expect(wrapper.find('[data-foo="foo.bar"]')).to.have.length(1);
+    });
+
+    it('Should query attributes with spaces in their values', () => {
+      const wrapper = shallow(
+        <div>
           <h1 data-foo="foo bar">Hello</h1>
           <h1 data-foo="bar baz quz">World</h1>
         </div>
